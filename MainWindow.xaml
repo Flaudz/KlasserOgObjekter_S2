@@ -6,7 +6,12 @@
         xmlns:local="clr-namespace:KlasserOgObjekter"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-
-    </Grid>
+    <Canvas x:Name="GameStartCanvas">
+        <Image x:Name="startBg" Source="C:\Users\nico936d\Documents\S-2\Uge_34\Onsdag_KlasserOgObjeker\WPF_Gaming3\KlasserOgObjekter\StartBg.jpg" Width="{Binding Path=ActualWidth, ElementName=GameStartCanvas}" Height="{Binding Path=ActualHeight, ElementName=GameStartCanvas}" Stretch="Fill"/>
+        <TextBlock x:Name="PlayerHealth" Text="Player Health: " />
+        <TextBlock x:Name="PcHealth" Text="Pc Health: " Canvas.Left="700"/>
+        <Button x:Name="AttackBtn" Content="Attack" Canvas.Left="381.26" Canvas.Top="300" Click="PlayerAttack"/>
+        <Image x:Name="HarryImg" Source="C:\Users\nico936d\Documents\S-2\Uge_34\Onsdag_KlasserOgObjeker\WPF_Gaming3\KlasserOgObjekter\HarryImg.png" Width="200" Canvas.Top="220"/>
+        <Image x:Name="VoldemortImg" Source="C:\Users\nico936d\Documents\S-2\Uge_34\Onsdag_KlasserOgObjeker\WPF_Gaming3\KlasserOgObjekter\VoldemortImg.png" Width="200" Canvas.Top="220" Canvas.Left="600"/>
+    </Canvas>
 </Window>
