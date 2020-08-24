@@ -7,12 +7,14 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Canvas x:Name="GameStartCanvas">
-        <Image x:Name="startBg" Source="C:\Users\nico936d\Documents\S-2\Uge_34\Onsdag_KlasserOgObjeker\WPF_Gaming3\KlasserOgObjekter\StartBg.jpg" Width="{Binding Path=ActualWidth, ElementName=GameStartCanvas}" Height="{Binding Path=ActualHeight, ElementName=GameStartCanvas}" Stretch="Fill"/>
+        <Image x:Name="startBg" Source="" Width="{Binding Path=ActualWidth, ElementName=GameStartCanvas}" Height="{Binding Path=ActualHeight, ElementName=GameStartCanvas}" Stretch="Fill"/>
         <TextBlock x:Name="PlayerHealth" Text="Player Health: " FontSize="40" />
         <TextBlock x:Name="PcHealth" Text="Pc Health: " Canvas.Left="530" FontSize="40"/>
         <Button x:Name="AttackBtn" Content="Basic Attack" Canvas.Left="200" Canvas.Top="380" Click="PlayerAttack" FontSize="20" HorizontalAlignment="Stretch" VerticalAlignment="Center" Width="110"/>
         <Button x:Name="AnapneokBtn" Content="Anapneo" Canvas.Left="200" Canvas.Top="340" Click="AnapneoAttack" FontSize="20" HorizontalAlignment="Stretch" VerticalAlignment="Center" Width="110"/>
-        <Image x:Name="HarryImg" Source="C:\Users\nico936d\Documents\S-2\Uge_34\Onsdag_KlasserOgObjeker\WPF_Gaming3\KlasserOgObjekter\HarryImg.png" Width="200" Canvas.Top="220"/>
-        <Image x:Name="VoldemortImg" Source="C:\Users\nico936d\Documents\S-2\Uge_34\Onsdag_KlasserOgObjeker\WPF_Gaming3\KlasserOgObjekter\VoldemortImg.png" Width="200" Canvas.Top="220" Canvas.Left="600"/>
+        <Image x:Name="HarryImg" Source="" Width="200" Canvas.Top="220"/>
+        <Image x:Name="VoldemortImg" Source="" Width="200" Canvas.Top="220" Canvas.Left="600"/>
+        
     </Canvas>
+
 </Window>

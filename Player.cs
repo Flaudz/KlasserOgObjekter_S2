@@ -36,7 +36,7 @@ namespace KlasserOgObjekter
         public int Attack()
         {
             MediaPlayer player = new MediaPlayer();
-            player.Open(new Uri(@"C:\Users\nico936d\Documents\S-2\Uge_34\Onsdag_KlasserOgObjeker\WPF_Gaming3\KlasserOgObjekter\pew.mp3"));
+            player.Open(new Uri($@"{MiddleClass.Dir}\pew.mp3"));
             player.Play();
             Random rnd = new Random();
             if(Mana <= 100+(Level+26))
@@ -49,7 +49,7 @@ namespace KlasserOgObjekter
         public int AnapneoAttack()
         {
             MediaPlayer player = new MediaPlayer();
-            player.Open(new Uri(@"C:\Users\nico936d\Documents\S-2\Uge_34\Onsdag_KlasserOgObjeker\WPF_Gaming3\KlasserOgObjekter\pew.mp3"));
+            player.Open(new Uri($@"{MiddleClass.Dir}\pew.mp3"));
             player.Play();
             Random rnd = new Random();
             Mana -= Level+13;

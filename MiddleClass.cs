@@ -10,6 +10,7 @@ namespace KlasserOgObjekter
     {
         static Target Voldemort = new Target(100, 1, 1);
         static Player Harry = new Player("Harry Potter", 100, 1, 1, 100);
+        public static string Dir = $@"{Environment.CurrentDirectory}\Assets";
 
         public static string HarryBasicAttack()
         {
@@ -31,7 +32,7 @@ namespace KlasserOgObjekter
             {
                 Voldemort.Health = 100;
                 MediaPlayer player = new MediaPlayer();
-                player.Open(new Uri(@"C:\Users\nico936d\Documents\S-2\Uge_34\Onsdag_KlasserOgObjeker\WPF_Gaming3\KlasserOgObjekter\deadSound.mp3"));
+                player.Open(new Uri($@"{Dir}\deadSound.mp3"));
                 player.Play();
                 Harry.LevelUp();
             }
@@ -58,7 +59,7 @@ namespace KlasserOgObjekter
             if(Harry.Health <= 0)
             {
                 MediaPlayer player = new MediaPlayer();
-                player.Open(new Uri(@"C:\Users\nico936d\Documents\S-2\Uge_34\Onsdag_KlasserOgObjeker\WPF_Gaming3\KlasserOgObjekter\deadSound.mp3"));
+                player.Open(new Uri($@"{Dir}\deadSound.mp3"));
                 player.Play();
                 Harry.Health = 100;
                 Harry.Mana = 100 + (Harry.Level + 26);

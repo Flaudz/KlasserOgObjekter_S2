@@ -19,16 +19,19 @@ namespace KlasserOgObjekter
     public partial class MainWindow : Window
     {
 
-        BitmapImage HarryStandImg = new BitmapImage(new Uri("C:/Users/nico936d/Documents/S-2/Uge_34/Onsdag_KlasserOgObjeker/WPF_Gaming3/KlasserOgObjekter/HarryImg.png"));
-        BitmapImage HarryAttackImg = new BitmapImage(new Uri("C:/Users/nico936d/Documents/S-2/Uge_34/Onsdag_KlasserOgObjeker/WPF_Gaming3/KlasserOgObjekter/HarryAttackImg.png"));
-        BitmapImage VoldemortStandImg = new BitmapImage(new Uri("C:/Users/nico936d/Documents/S-2/Uge_34/Onsdag_KlasserOgObjeker/WPF_Gaming3/KlasserOgObjekter/VoldemortImg.png"));
-        BitmapImage VoldemortAttackImg = new BitmapImage(new Uri("C:/Users/nico936d/Documents/S-2/Uge_34/Onsdag_KlasserOgObjeker/WPF_Gaming3/KlasserOgObjekter/VoldemortAttackImg.png"));
+        BitmapImage HarryStandImg = new BitmapImage(new Uri(@$"{MiddleClass.Dir}\HarryImg.png"));
+        BitmapImage HarryAttackImg = new BitmapImage(new Uri(@$"{MiddleClass.Dir}\HarryAttackImg.png"));
+        BitmapImage VoldemortStandImg = new BitmapImage(new Uri(@$"{MiddleClass.Dir}\VoldemortImg.png"));
+        BitmapImage VoldemortAttackImg = new BitmapImage(new Uri(@$"{MiddleClass.Dir}\VoldemortAttackImg.png"));
 
-        
-        
+
+
         public MainWindow()
         {
             InitializeComponent();
+            HarryImg.Source = HarryStandImg;
+            VoldemortImg.Source = VoldemortStandImg;
+            startBg.Source = new BitmapImage(new Uri($@"{MiddleClass.Dir}\StartBg.jpg"));
         }
         
         private void PlayerAttack(object sender, RoutedEventArgs e)
