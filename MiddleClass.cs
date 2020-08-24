@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
+using System.Windows.Media;
 
 namespace KlasserOgObjekter
 {
@@ -29,6 +30,9 @@ namespace KlasserOgObjekter
             if (Voldemort.Health <= 0)
             {
                 Voldemort.Health = 100;
+                MediaPlayer player = new MediaPlayer();
+                player.Open(new Uri(@"C:\Users\nico936d\Documents\S-2\Uge_34\Onsdag_KlasserOgObjeker\WPF_Gaming3\KlasserOgObjekter\deadSound.mp3"));
+                player.Play();
                 Harry.LevelUp();
             }
             return @"Health: " + Voldemort.Health;
@@ -53,7 +57,11 @@ namespace KlasserOgObjekter
             Harry.Health -= vDamage;
             if(Harry.Health <= 0)
             {
+                MediaPlayer player = new MediaPlayer();
+                player.Open(new Uri(@"C:\Users\nico936d\Documents\S-2\Uge_34\Onsdag_KlasserOgObjeker\WPF_Gaming3\KlasserOgObjekter\deadSound.mp3"));
+                player.Play();
                 Harry.Health = 100;
+                Harry.Mana = 100 + (Harry.Level + 26);
                 Voldemort.LevelUp();
             }
             

@@ -34,6 +34,7 @@ namespace KlasserOgObjekter
         private void PlayerAttack(object sender, RoutedEventArgs e)
         {
             AttackBtn.IsEnabled = false;
+            AnapneokBtn.IsEnabled = false;
             HarryImg.Source = HarryAttackImg;
             PcHealth.Text = MiddleClass.HarryBasicAttack();
             wait();
@@ -41,6 +42,7 @@ namespace KlasserOgObjekter
 
         private void AnapneoAttack(object sender, RoutedEventArgs e)
         {
+            AttackBtn.IsEnabled = false;
             AnapneokBtn.IsEnabled = false;
             HarryImg.Source = HarryAttackImg;
             PcHealth.Text = MiddleClass.HarryAnapneoAttack();
@@ -61,6 +63,7 @@ namespace KlasserOgObjekter
             PlayerHealth.Text = $"Player Health: {MiddleClass.VoldemortAttack()}";
             await Task.Delay(1000);
             AttackBtn.IsEnabled = true;
+
             VoldemortImg.Source = VoldemortStandImg;
             checkMana();
         }

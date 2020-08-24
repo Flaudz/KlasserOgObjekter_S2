@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
+using System.Windows.Media;
 using System.Windows.Navigation;
 
 namespace KlasserOgObjekter
@@ -34,23 +35,29 @@ namespace KlasserOgObjekter
 
         public int Attack()
         {
+            MediaPlayer player = new MediaPlayer();
+            player.Open(new Uri(@"C:\Users\nico936d\Documents\S-2\Uge_34\Onsdag_KlasserOgObjeker\WPF_Gaming3\KlasserOgObjekter\pew.mp3"));
+            player.Play();
             Random rnd = new Random();
-            if(Mana <= 100)
+            if(Mana <= 100+(Level+26))
             {
-                Mana += 3;
+                Mana += Level+7;
             }
             return Strength + rnd.Next(1, 10);
         }
 
         public int AnapneoAttack()
         {
+            MediaPlayer player = new MediaPlayer();
+            player.Open(new Uri(@"C:\Users\nico936d\Documents\S-2\Uge_34\Onsdag_KlasserOgObjeker\WPF_Gaming3\KlasserOgObjekter\pew.mp3"));
+            player.Play();
             Random rnd = new Random();
-            Mana -= 13;
+            Mana -= Level+13;
             if(Mana <= 50)
             {
                 
             }
-            return Strength + rnd.Next(5, 20);
+            return Strength + rnd.Next(10, 20);
         }
 
         public int TakeDamage(int dmgReceived)

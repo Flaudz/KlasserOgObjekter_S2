@@ -39,8 +39,8 @@ namespace KlasserOgObjekter
 
         public void LevelUp()
         {
-            Xp *= 2;
-            if (Xp >= Level * 2)
+            Xp *= 1.5;
+            if (Xp >= Level * 2.5)
             {
                 Level++;
                 MessageBox.Show($"{Name} {Level}");
