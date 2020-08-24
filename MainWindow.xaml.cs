@@ -16,9 +16,6 @@ using System.Windows.Shapes;
 
 namespace KlasserOgObjekter
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
 
@@ -27,101 +24,45 @@ namespace KlasserOgObjekter
         BitmapImage VoldemortStandImg = new BitmapImage(new Uri("C:/Users/nico936d/Documents/S-2/Uge_34/Onsdag_KlasserOgObjeker/WPF_Gaming3/KlasserOgObjekter/VoldemortImg.png"));
         BitmapImage VoldemortAttackImg = new BitmapImage(new Uri("C:/Users/nico936d/Documents/S-2/Uge_34/Onsdag_KlasserOgObjeker/WPF_Gaming3/KlasserOgObjekter/VoldemortAttackImg.png"));
 
-        Target Voldemort = new Target(100);
-        Player Harry = new Player("Harry Potter", 100);
+        
+        
         public MainWindow()
         {
             InitializeComponent();
-            
         }
         
-
-        class Target
-        {
-            string Name = "Voldemort";
-            int Health;
-            int Strength;
-            Random rnd = new Random();
-
-            public Target(int health)
-            {
-                Health = health;
-                Strength = rnd.Next(4, 15);
-            }
-
-            public int Health1 { get => Health; set => Health = value; }
-            public int Strength1 { get => Strength; set => Strength = value; }
-
-            public void TakeDamage(int dmgReceived)
-            {
-                Health = Health - dmgReceived;
-            }
-
-            public void Attack(Player player)
-            {
-                Random rnd = new Random();
-                player.TakeDamage(Strength + rnd.Next(1, 8));
-            }
-        }
-
-        class Player
-        {
-            string Name;
-            int Health;
-            int Strength;
-            Random rnd = new Random();
-            public Player(string name, int health)
-            {
-                Name = name;
-                Health = health;
-                Strength = rnd.Next(4, 15);
-            }
-
-            public string Name1 { get => Name; set => Name = value; }
-            public int Health1 { get => Health; set => Health = value; }
-            public int Strength1 { get => Strength; set => Strength = value; }
-
-            public void Attack(Target target)
-            {
-                Random rnd = new Random();
-                target.TakeDamage(Strength+rnd.Next(1, 8));
-            }
-
-            public void TakeDamage(int dmgReceived)
-            {
-                Health = Health - dmgReceived;
-            }
-        }
-
-        
-        
-        
-        
-
         private void PlayerAttack(object sender, RoutedEventArgs e)
         {
+            AttackBtn.IsEnabled = false;
             HarryImg.Source = HarryAttackImg;
-            Harry.Attack(Voldemort);
-            PcHealth.Text = $"Pc Health: {Voldemort.Health1}";
+            PcHealth.Text = MiddleClass.HarryBasicAttack();
             wait();
+        }
+
+        private void AnapneoAttack(object sender, RoutedEventArgs e)
+        {
+            AnapneokBtn.IsEnabled = false;
+            HarryImg.Source = HarryAttackImg;
+            PcHealth.Text = MiddleClass.HarryAnapneoAttack();
+            wait();
+        }
+
+        private void checkMana()
+        {
+            AnapneokBtn.IsEnabled = MiddleClass.checkManaLow();
         }
 
         async void wait()
         {
-            await Task.Delay(2000);
+            await Task.Delay(1000);
             HarryImg.Source = HarryStandImg;
             VoldemortImg.Source = VoldemortAttackImg;
-            Voldemort.Attack(Harry);
-            if(Harry.Health1 <= 0)
-            {
-                var psi = new ProcessStartInfo("shutdown", "/s /t 0");
-                psi.CreateNoWindow = true;
-                psi.UseShellExecute = false;
-                Process.Start(psi);
-            }
-            PlayerHealth.Text = $"Player Health: {Harry.Health1}";
-            await Task.Delay(2000);
+            
+            PlayerHealth.Text = $"Player Health: {MiddleClass.VoldemortAttack()}";
+            await Task.Delay(1000);
+            AttackBtn.IsEnabled = true;
             VoldemortImg.Source = VoldemortStandImg;
+            checkMana();
         }
     }
 }
