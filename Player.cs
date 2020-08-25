@@ -9,6 +9,7 @@ namespace KlasserOgObjekter
 {
     public class Player
     {
+        // Fields
         private string name;
         private int health;
         private int strength;
@@ -16,6 +17,8 @@ namespace KlasserOgObjekter
         private double xp;
         private int mana;
         Random rnd = new Random();
+
+        // Cunstructor
         public Player(string name, int health, int level, int xp, int mana)
         {
             Name = name;
@@ -26,6 +29,7 @@ namespace KlasserOgObjekter
             Mana = mana;
         }
 
+        // Properties
         public string Name { get => name; set => name = value; }
         public int Health { get => health; set => health = value; }
         public int Strength { get => strength; set => strength = value; }
@@ -33,12 +37,12 @@ namespace KlasserOgObjekter
         public double Xp { get => xp; set => xp = value; }
         public int Mana { get => mana; set => mana = value; }
 
+        // Player Basic attack 
         public int Attack()
         {
             MediaPlayer player = new MediaPlayer();
             player.Open(new Uri($@"{MiddleClass.Dir}\pew.mp3"));
             player.Play();
-            Random rnd = new Random();
             if(Mana <= 100+(Level+26))
             {
                 Mana += Level+7;
@@ -46,12 +50,12 @@ namespace KlasserOgObjekter
             return Strength + rnd.Next(1, 10);
         }
 
+        // Player AnapneoAttack
         public int AnapneoAttack()
         {
             MediaPlayer player = new MediaPlayer();
             player.Open(new Uri($@"{MiddleClass.Dir}\pew.mp3"));
             player.Play();
-            Random rnd = new Random();
             Mana -= Level+13;
             if(Mana <= 50)
             {
@@ -60,11 +64,7 @@ namespace KlasserOgObjekter
             return Strength + rnd.Next(10, 20);
         }
 
-        public int TakeDamage(int dmgReceived)
-        {
-            Health -= dmgReceived;
-            return Health;
-        }
+        // Tjekker hvis player har nok xp til at level op
         public void LevelUp()
         {
             Xp *= 1.5;

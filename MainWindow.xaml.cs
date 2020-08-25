@@ -18,7 +18,7 @@ namespace KlasserOgObjekter
 {
     public partial class MainWindow : Window
     {
-
+        // Her laver jeg 4 bitmapimages som holder på hver sin sti til et billede.
         BitmapImage HarryStandImg = new BitmapImage(new Uri(@$"{MiddleClass.Dir}\HarryImg.png"));
         BitmapImage HarryAttackImg = new BitmapImage(new Uri(@$"{MiddleClass.Dir}\HarryAttackImg.png"));
         BitmapImage VoldemortStandImg = new BitmapImage(new Uri(@$"{MiddleClass.Dir}\VoldemortImg.png"));
@@ -29,11 +29,15 @@ namespace KlasserOgObjekter
         public MainWindow()
         {
             InitializeComponent();
+            // Her laver jeg HarryImg billede sti om til en af de urler som jeg lavede oppe i toppen
             HarryImg.Source = HarryStandImg;
+            // Det samme her
             VoldemortImg.Source = VoldemortStandImg;
+            // Her sætter jeg bagrundsbilledet til at være et billede
             startBg.Source = new BitmapImage(new Uri($@"{MiddleClass.Dir}\StartBg.jpg"));
         }
         
+        // Her angriber player voldemort med et basic angrab
         private void PlayerAttack(object sender, RoutedEventArgs e)
         {
             AttackBtn.IsEnabled = false;
@@ -43,6 +47,7 @@ namespace KlasserOgObjekter
             wait();
         }
 
+        // Her angriber player voldemort med AnapneoAttack
         private void AnapneoAttack(object sender, RoutedEventArgs e)
         {
             AttackBtn.IsEnabled = false;
@@ -52,11 +57,13 @@ namespace KlasserOgObjekter
             wait();
         }
 
+        // Her tjekker jeg for mana
         private void checkMana()
         {
             AnapneokBtn.IsEnabled = MiddleClass.checkManaLow();
         }
 
+        // Det her er en wait
         async void wait()
         {
             await Task.Delay(1000);
