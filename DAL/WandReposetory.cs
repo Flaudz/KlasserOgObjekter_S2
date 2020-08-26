@@ -11,15 +11,19 @@ namespace KlasserOgObjekter.DAL
         {
             List<Wand> wands = new List<Wand>();
 
+
             Wand theElderWand = new Wand(10, "theElderWand");
             Wand Fraxinus = new Wand(6, "Fraxinus");
             Wand Populus = new Wand(4, "Populus");
             Wand Juglans = new Wand(7, "Juglans nigra");
+            Wand Acacia = new Wand(1, "Acacia");
+
 
             wands.Add(theElderWand);
             wands.Add(Fraxinus);
             wands.Add(Populus);
             wands.Add(Juglans);
+            wands.Add(Acacia);
 
 
             return wands;
