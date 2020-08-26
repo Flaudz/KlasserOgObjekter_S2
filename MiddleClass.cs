@@ -21,7 +21,7 @@ namespace KlasserOgObjekter
         public static string HarryBasicAttack()
         {
         
-            int hDamage = Harry.Attack();
+            int hDamage = Harry.Attack(1);
             Voldemort.Health -= hDamage;
             if (Voldemort.Health <= 0)
             {
@@ -34,7 +34,7 @@ namespace KlasserOgObjekter
         // Det samme som over den her men der er noget der gør sådan at det skader mere
         public static string HarryAnapneoAttack()
         {
-            int hDamage = Harry.AnapneoAttack();
+            int hDamage = Harry.AnapneoAttack(1);
             Voldemort.Health -= hDamage;
             if (Voldemort.Health <= 0)
             {
@@ -73,7 +73,7 @@ namespace KlasserOgObjekter
         // Her angriber Voldemort
         public static string VoldemortAttack()
         {
-            int vDamage = Voldemort.Attack();
+            int vDamage = Voldemort.Attack(0);
             Harry.Health -= vDamage;
             if(Harry.Health <= 0)
             {

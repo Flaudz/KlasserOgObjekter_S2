@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -35,8 +36,16 @@ namespace KlasserOgObjekter
             VoldemortImg.Source = VoldemortStandImg;
             // Her sætter jeg bagrundsbilledet til at være et billede
             startBg.Source = new BitmapImage(new Uri($@"{MiddleClass.Dir}\StartBg.jpg"));
+
+            shopBg.Source = new BitmapImage(new Uri($@"{MiddleClass.Dir}\shopBg.jpg"));
         }
-        
+
+        // Menuer
+        private void shopBtn_Clicked(object sender, RoutedEventArgs e)
+        {
+            Shop.Visibility = Visibility.Visible;
+        }
+
         // Her angriber player voldemort med et basic angrab
         private void PlayerAttack(object sender, RoutedEventArgs e)
         {
@@ -63,6 +72,7 @@ namespace KlasserOgObjekter
             AnapneokBtn.IsEnabled = MiddleClass.checkManaLow();
         }
 
+        // Sætter pc og player level text til at være hvad deres level er
         public void levelCheck()
         {
             PcLevel.Text = MiddleClass.vLvlCheck();

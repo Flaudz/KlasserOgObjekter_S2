@@ -38,7 +38,7 @@ namespace KlasserOgObjekter
         public int Mana { get => mana; set => mana = value; }
 
         // Player Basic attack 
-        public int Attack()
+        public int Attack(int wandDamage)
         {
             MediaPlayer player = new MediaPlayer();
             player.Open(new Uri($@"{MiddleClass.Dir}\pew.mp3"));
@@ -47,11 +47,11 @@ namespace KlasserOgObjekter
             {
                 Mana += Level+7;
             }
-            return Strength + rnd.Next(1, 10);
+            return (Strength + rnd.Next(1, 10)) + wandDamage;
         }
 
         // Player AnapneoAttack
-        public int AnapneoAttack()
+        public int AnapneoAttack(int wandDamage)
         {
             MediaPlayer player = new MediaPlayer();
             player.Open(new Uri($@"{MiddleClass.Dir}\pew.mp3"));
@@ -61,7 +61,7 @@ namespace KlasserOgObjekter
             {
                 
             }
-            return Strength + rnd.Next(10, 20);
+            return (Strength + rnd.Next(10, 20)) + wandDamage;
         }
 
         // Tjekker hvis player har nok xp til at level op
