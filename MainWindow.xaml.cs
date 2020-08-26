@@ -83,5 +83,16 @@ namespace KlasserOgObjekter
             levelCheck();
             checkMana();
         }
+
+        private void startBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Game.Visibility = Visibility.Visible;
+            StartC.Visibility = Visibility.Hidden;
+        }
+
+        private void closeBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Environment.Exit(1);
+        }
     }
 }

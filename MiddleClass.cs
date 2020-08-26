@@ -59,11 +59,12 @@ namespace KlasserOgObjekter
             }
         }
 
+        // Her laver jeg en return med Voldemorts Level sådan at jeg kan få det ind i guien
         public static string vLvlCheck()
         {
             return $"{Voldemort.Level}";
         }
-
+        // Her laver jeg en return med Harrys Level sådan at jeg kan få det ind i guien
         public static string hLvlCheck()
         {
             return $"{Harry.Level}";
@@ -84,8 +85,6 @@ namespace KlasserOgObjekter
                 Voldemort.LevelUp();
             }
             
-
-
             return "" + Harry.Health;
         }
     }
