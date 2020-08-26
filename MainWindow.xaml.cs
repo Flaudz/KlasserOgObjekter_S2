@@ -63,6 +63,12 @@ namespace KlasserOgObjekter
             AnapneokBtn.IsEnabled = MiddleClass.checkManaLow();
         }
 
+        public void levelCheck()
+        {
+            PcLevel.Text = MiddleClass.vLvlCheck();
+            PlayerLevel.Text = MiddleClass.hLvlCheck();
+        }
+
         // Det her er en wait
         async void wait()
         {
@@ -73,8 +79,8 @@ namespace KlasserOgObjekter
             PlayerHealth.Text = $"Player Health: {MiddleClass.VoldemortAttack()}";
             await Task.Delay(1000);
             AttackBtn.IsEnabled = true;
-
             VoldemortImg.Source = VoldemortStandImg;
+            levelCheck();
             checkMana();
         }
     }

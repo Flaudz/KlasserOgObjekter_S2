@@ -19,10 +19,10 @@ namespace KlasserOgObjekter
         Random rnd = new Random();
 
         // Cunstructor
-        public Player(string name, int health, int level, int xp, int mana)
+        public Player(string name, int level, int xp, int mana)
         {
             Name = name;
-            Health = health;
+            Health = 100 + rnd.Next(level, level + 27);
             Strength = rnd.Next(4, (level + 1) * 2);
             Level = level;
             Xp = xp;
@@ -65,14 +65,16 @@ namespace KlasserOgObjekter
         }
 
         // Tjekker hvis player har nok xp til at level op
-        public void LevelUp()
+        public virtual string LevelUp()
         {
             Xp *= 1.5;
             if (Xp >= Level * 2.5)
             {
+                
                 Level++;
                 MessageBox.Show($"{name} {Level}");
             }
+            return Level.ToString();
         }
     }
 }

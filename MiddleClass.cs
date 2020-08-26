@@ -8,21 +8,24 @@ namespace KlasserOgObjekter
 {
     class MiddleClass
     {
+        static Random rnd = new Random();
+        
         // Her laver jeg Voldemort fra target klassen
-        static Target Voldemort = new Target(100, 1, 1);
+        static Target Voldemort = new Target("Voldemort", 1, 1, 100);
         // Her laver jeg Harry fra target klassen
-        static Player Harry = new Player("Harry Potter", 100, 1, 1, 100);
+        static Player Harry = new Player("Harry Potter", 1, 1, 100);
         // Her får jeg stien til den mappe som programmet ligger i med \Assets
         public static string Dir = $@"{Environment.CurrentDirectory}\Assets";
 
         // Her laver jeg en HarryBasicAttack som kalde Harry.Attack, giver den skade til Voldemort og tjekker om han er død og hvis han er det skal den kalde Harry.LevelUp
         public static string HarryBasicAttack()
         {
+        
             int hDamage = Harry.Attack();
             Voldemort.Health -= hDamage;
             if (Voldemort.Health <= 0)
             {
-                Voldemort.Health = 100;
+                Voldemort.Health = 100 + rnd.Next(Voldemort.Level, Voldemort.Level + 27);
                 Harry.LevelUp();
             }
             return @"Health: "+Voldemort.Health;
@@ -35,7 +38,7 @@ namespace KlasserOgObjekter
             Voldemort.Health -= hDamage;
             if (Voldemort.Health <= 0)
             {
-                Voldemort.Health = 100;
+                Voldemort.Health = 100 + rnd.Next(Voldemort.Level, Voldemort.Level + 27);
                 MediaPlayer player = new MediaPlayer();
                 player.Open(new Uri($@"{Dir}\deadSound.mp3"));
                 player.Play();
@@ -56,23 +59,33 @@ namespace KlasserOgObjekter
             }
         }
 
+        public static string vLvlCheck()
+        {
+            return $"{Voldemort.Level}";
+        }
+
+        public static string hLvlCheck()
+        {
+            return $"{Harry.Level}";
+        }
 
         // Her angriber Voldemort
         public static string VoldemortAttack()
         {
-            int vDamage = Voldemort.Attack(Harry);
+            int vDamage = Voldemort.Attack();
             Harry.Health -= vDamage;
             if(Harry.Health <= 0)
             {
                 MediaPlayer player = new MediaPlayer();
                 player.Open(new Uri($@"{Dir}\deadSound.mp3"));
                 player.Play();
-                Harry.Health = 100;
+                Harry.Health = 100 + rnd.Next(Harry.Level, Harry.Level + 27);
                 Harry.Mana = 100 + (Harry.Level + 26);
                 Voldemort.LevelUp();
             }
             
-            
+
+
             return "" + Harry.Health;
         }
     }
