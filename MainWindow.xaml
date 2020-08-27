@@ -7,12 +7,12 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Canvas x:Name="GameStartCanvas">
-        <Image x:Name="startBg" Width="{Binding Path=ActualWidth, ElementName=GameStartCanvas}" Height="{Binding Path=ActualHeight, ElementName=GameStartCanvas}" Stretch="Fill"/>
         <Canvas x:Name="StartC" Visibility="Hidden">
             <Button x:Name="startBtn" Content="Start" FontSize="25" Width="100" Canvas.Top="150" Canvas.Left="350" Click="startBtn_Click"/>
             <Button x:Name="closeBtn" Content="Close" FontSize="25" Width="100" Canvas.Top="200" Canvas.Left="350" Click="closeBtn_Click"/>
         </Canvas>
         <Canvas x:Name="Game">
+        <Image x:Name="startBg" Width="{Binding Path=ActualWidth, ElementName=GameStartCanvas}" Height="{Binding Path=ActualHeight, ElementName=GameStartCanvas}" Stretch="Fill"/>
             <TextBlock x:Name="PlayerHealth" Text="Player Health: " FontSize="40" />
             <TextBlock x:Name="PlayerLevel" Text="Level" FontSize="25" Canvas.Top="50" Canvas.Left="80"/>
             <TextBlock x:Name="PcHealth" Text="Pc Health: " Canvas.Left="530" FontSize="40"/>
@@ -23,8 +23,10 @@
             <Image x:Name="HarryImg" Width="200" Canvas.Top="220"/>
             <Image x:Name="VoldemortImg" Width="200" Canvas.Top="220" Canvas.Left="600"/>
         </Canvas>
-        <Canvas x:Name="Shop">
+        <Canvas Visibility="Hidden" x:Name="Shop" Width="{Binding Path=ActualWidth, ElementName=GameStartCanvas}" Height="{Binding Path=ActualHeight, ElementName=GameStartCanvas}">
             <Image x:Name="shopBg" Width="{Binding Path=ActualWidth, ElementName=Shop}" Height="{Binding Path=ActualHeight, ElementName=Shop}" Stretch="Fill"/>
+            <Button Content="Back" FontSize="25" Canvas.Top="376" Width="100" Click="backToGame"/>
+            <TextBlock x:Name="goldCounter" Text="Gold" FontSize="25" Canvas.Left="686" Canvas.Top="376" Width="100"/>
         </Canvas>
         
     </Canvas>

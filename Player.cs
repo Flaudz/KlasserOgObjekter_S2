@@ -16,10 +16,11 @@ namespace KlasserOgObjekter
         private int level;
         private double xp;
         private int mana;
+        private int gold;
         Random rnd = new Random();
 
         // Cunstructor
-        public Player(string name, int level, int xp, int mana)
+        public Player(string name, int level, int xp, int mana, int gold)
         {
             Name = name;
             Health = 100 + rnd.Next(level, level + 27);
@@ -27,6 +28,7 @@ namespace KlasserOgObjekter
             Level = level;
             Xp = xp;
             Mana = mana;
+            Gold = gold;
         }
 
         // Properties
@@ -36,6 +38,7 @@ namespace KlasserOgObjekter
         public int Level { get => level; set => level = value; }
         public double Xp { get => xp; set => xp = value; }
         public int Mana { get => mana; set => mana = value; }
+        public int Gold { get => gold; set => gold = value; }
 
         // Player Basic attack 
         public int Attack(int wandDamage)

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using KlasserOgObjekter.DAL;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -43,8 +44,56 @@ namespace KlasserOgObjekter
         // Menuer
         private void shopBtn_Clicked(object sender, RoutedEventArgs e)
         {
+            StartC.Visibility = Visibility.Hidden;
+            Game.Visibility = Visibility.Hidden;
             Shop.Visibility = Visibility.Visible;
+            for(int i = 0; i < WandReposetory.WandList().Count; i++)
+            {
+                Image wandImg = new Image();
+                wandImg.Source = new BitmapImage(new Uri($@"{MiddleClass.Dir}\wands\wand{i}.jpg"));
+                wandImg.Width = 100;
+                Button wandBtn = new Button();
+                wandBtn.Content = wandImg;
+                Canvas.SetLeft(wandBtn, i * 120);
+
+                wandBtn.Name = $"{WandReposetory.WandList()[i].Name}";
+                wandBtn.Click += new RoutedEventHandler(shopElement);
+                wandBtn.Tag = wandImg.Source.ToString();
+                Shop.Children.Add(wandBtn);
+            }
+            goldCounter.Text = MiddleClass.returnGold();
         }
+
+        public void shopElement(object sender, RoutedEventArgs e)
+        {
+            Button srcButton = e.Source as Button;
+
+            foreach (Wand wands in WandReposetory.WandList())
+            {
+                if (srcButton.Name == wands.Name)
+                {
+                    
+                    MiddleClass.giveHarryStrenght(wands.WandDamage);
+                    
+                }
+            }
+        }
+
+        public void goldUpdater(int goldCount)
+        {
+            goldCounter.Text = goldCount.ToString();
+        }
+
+        private void backToGame(object sender, RoutedEventArgs e)
+        {
+            StartC.Visibility = Visibility.Hidden;
+            Game.Visibility = Visibility.Visible;
+            Shop.Visibility = Visibility.Hidden;
+        }
+
+        // Shop
+        // Skal lære at loope igennem en list
+        // Skal lære hvordan jeg tilgår en Class som er inde i en mappe fx: DAL/WandReposetory
 
         // Her angriber player voldemort med et basic angrab
         private void PlayerAttack(object sender, RoutedEventArgs e)

@@ -7,7 +7,7 @@ namespace KlasserOgObjekter
 {
     public class Target : Player
     {
-        public Target(string name, int level, int xp, int mana) : base(name, level, xp, mana)
+        public Target(string name, int level, int xp, int mana, int gold) : base(name, level, xp, mana, gold)
         {
         }
 

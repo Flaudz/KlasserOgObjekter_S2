@@ -8,14 +8,17 @@ namespace KlasserOgObjekter
     {
         private int wandDamage;
         private string name;
+        private int cost;
 
         public int WandDamage { get => wandDamage; set => wandDamage = value; }
         public string Name { get => name; set => name = value; }
+        public int Cost { get => cost; set => cost = value; }
 
-        public Wand(int wandDamage, string name)
+        public Wand(int wandDamage, string name, int cost)
         {
             WandDamage = wandDamage;
             Name = name;
+            Cost = cost;
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using KlasserOgObjekter.DAL;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -11,9 +12,9 @@ namespace KlasserOgObjekter
         static Random rnd = new Random();
         
         // Her laver jeg Voldemort fra target klassen
-        static Target Voldemort = new Target("Voldemort", 1, 1, 100);
+        static Target Voldemort = new Target("Voldemort", 1, 1, 100, 0);
         // Her laver jeg Harry fra target klassen
-        static Player Harry = new Player("Harry Potter", 1, 1, 100);
+        static Player Harry = new Player("Harry Potter", 1, 1, 100, 0);
         // Her får jeg stien til den mappe som programmet ligger i med \Assets
         public static string Dir = $@"{Environment.CurrentDirectory}\Assets";
 
@@ -26,6 +27,8 @@ namespace KlasserOgObjekter
             if (Voldemort.Health <= 0)
             {
                 Voldemort.Health = 100 + rnd.Next(Voldemort.Level, Voldemort.Level + 27);
+
+                Harry.Gold += 5 * Voldemort.Level;
                 Harry.LevelUp();
             }
             return @"Health: "+Voldemort.Health;
@@ -38,13 +41,33 @@ namespace KlasserOgObjekter
             Voldemort.Health -= hDamage;
             if (Voldemort.Health <= 0)
             {
+
                 Voldemort.Health = 100 + rnd.Next(Voldemort.Level, Voldemort.Level + 27);
                 MediaPlayer player = new MediaPlayer();
                 player.Open(new Uri($@"{Dir}\deadSound.mp3"));
                 player.Play();
+                Harry.Gold += 5 * Voldemort.Level;
+                
                 Harry.LevelUp();
             }
             return @"Health: " + Voldemort.Health;
+        }
+
+        public static void giveHarryStrenght(int amountOfStrenght)
+        {
+            foreach (Wand wand in WandReposetory.WandList())
+            {
+                if(wand.WandDamage == amountOfStrenght && Harry.Gold >= wand.Cost)
+                {
+                    MessageBox.Show($"+ {wand.WandDamage}");
+                    Harry.Strength += amountOfStrenght;
+                }
+            }
+        }
+
+        public static string returnGold()
+        {
+            return Harry.Gold.ToString();
         }
 
         // Her tjekker den om manaen er mindre eller ligmed 50
