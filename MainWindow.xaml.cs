@@ -74,14 +74,9 @@ namespace KlasserOgObjekter
                 {
                     
                     MiddleClass.giveHarryStrenght(wands.WandDamage);
-                    
+                    goldCounter.Text = MiddleClass.returnGold();
                 }
             }
-        }
-
-        public void goldUpdater(int goldCount)
-        {
-            goldCounter.Text = goldCount.ToString();
         }
 
         private void backToGame(object sender, RoutedEventArgs e)

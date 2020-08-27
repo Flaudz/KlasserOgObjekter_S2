@@ -64,7 +64,7 @@ namespace KlasserOgObjekter
             {
                 
             }
-            return (Strength + rnd.Next(10, 20)) + wandDamage;
+            return (Strength + rnd.Next(50, 70)) + wandDamage;
         }
 
         // Tjekker hvis player har nok xp til at level op

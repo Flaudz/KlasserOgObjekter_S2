@@ -42,7 +42,7 @@ namespace KlasserOgObjekter
             if (Voldemort.Health <= 0)
             {
 
-                Voldemort.Health = 100 + rnd.Next(Voldemort.Level, Voldemort.Level + 27);
+                Voldemort.Health = 100 + rnd.Next(Voldemort.Level + 15, Voldemort.Level + 27);
                 MediaPlayer player = new MediaPlayer();
                 player.Open(new Uri($@"{Dir}\deadSound.mp3"));
                 player.Play();
@@ -61,6 +61,8 @@ namespace KlasserOgObjekter
                 {
                     MessageBox.Show($"+ {wand.WandDamage}");
                     Harry.Strength += amountOfStrenght;
+                    Harry.Gold -= wand.Cost;
+                    wand.Cost *= 2;
                 }
             }
         }
@@ -103,7 +105,7 @@ namespace KlasserOgObjekter
                 MediaPlayer player = new MediaPlayer();
                 player.Open(new Uri($@"{Dir}\deadSound.mp3"));
                 player.Play();
-                Harry.Health = 100 + rnd.Next(Harry.Level, Harry.Level + 27);
+                Harry.Health = 100 + rnd.Next(Harry.Level+15, Harry.Level + 27);
                 Harry.Mana = 100 + (Harry.Level + 26);
                 Voldemort.LevelUp();
             }
