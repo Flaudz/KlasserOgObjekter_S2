@@ -41,10 +41,10 @@ namespace KlasserOgObjekter
         public int Gold { get => gold; set => gold = value; }
 
         // Player Basic attack 
-        public int Attack(int wandDamage)
+        public int Attack(int wandDamage, string dir)
         {
             MediaPlayer player = new MediaPlayer();
-            player.Open(new Uri($@"{MiddleClass.Dir}\pew.mp3"));
+            player.Open(new Uri($@"{dir}\pew.mp3"));
             player.Play();
             if(Mana <= 100+(Level+26))
             {
@@ -54,10 +54,10 @@ namespace KlasserOgObjekter
         }
 
         // Player AnapneoAttack
-        public int AnapneoAttack(int wandDamage)
+        public int AnapneoAttack(int wandDamage, string dir)
         {
             MediaPlayer player = new MediaPlayer();
-            player.Open(new Uri($@"{MiddleClass.Dir}\pew.mp3"));
+            player.Open(new Uri($@"{dir}\pew.mp3"));
             player.Play();
             Mana -= Level+13;
             if(Mana <= 50)

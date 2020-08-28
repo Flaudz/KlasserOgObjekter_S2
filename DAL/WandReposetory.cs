@@ -6,10 +6,10 @@ namespace KlasserOgObjekter.DAL
 {
     public class WandReposetory
     {
+        public List<Wand> wands = new List<Wand>();
 
-        public static List<Wand> WandList()
+        public WandReposetory()
         {
-            List<Wand> wands = new List<Wand>();
 
 
             Wand theElderWand = new Wand(10, "theElderWand", 250);
@@ -26,7 +26,6 @@ namespace KlasserOgObjekter.DAL
             //wands.Add(Acacia);
 
 
-            return wands;
         }
     }
 }

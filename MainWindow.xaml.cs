@@ -20,25 +20,33 @@ namespace KlasserOgObjekter
 {
     public partial class MainWindow : Window
     {
+        MiddleClass middleClass = new MiddleClass();
         // Her laver jeg 4 bitmapimages som holder på hver sin sti til et billede.
-        BitmapImage HarryStandImg = new BitmapImage(new Uri(@$"{MiddleClass.Dir}\HarryImg.png"));
-        BitmapImage HarryAttackImg = new BitmapImage(new Uri(@$"{MiddleClass.Dir}\HarryAttackImg.png"));
-        BitmapImage VoldemortStandImg = new BitmapImage(new Uri(@$"{MiddleClass.Dir}\VoldemortImg.png"));
-        BitmapImage VoldemortAttackImg = new BitmapImage(new Uri(@$"{MiddleClass.Dir}\VoldemortAttackImg.png"));
+
+        BitmapImage HarryStandImg = new BitmapImage();
+        BitmapImage HarryAttackImg = new BitmapImage();
+        BitmapImage VoldemortStandImg = new BitmapImage();
+        BitmapImage VoldemortAttackImg = new BitmapImage();
 
 
 
         public MainWindow()
         {
             InitializeComponent();
+
+            HarryStandImg = new BitmapImage(new Uri(@$"{middleClass.Dir}\HarryImg.png"));
+            HarryAttackImg = new BitmapImage(new Uri(@$"{middleClass.Dir}\HarryAttackImg.png"));
+            VoldemortStandImg = new BitmapImage(new Uri(@$"{middleClass.Dir}\VoldemortImg.png"));
+            VoldemortAttackImg = new BitmapImage(new Uri(@$"{middleClass.Dir}\VoldemortAttackImg.png"));
+
             // Her laver jeg HarryImg billede sti om til en af de urler som jeg lavede oppe i toppen
             HarryImg.Source = HarryStandImg;
             // Det samme her
             VoldemortImg.Source = VoldemortStandImg;
             // Her sætter jeg bagrundsbilledet til at være et billede
-            startBg.Source = new BitmapImage(new Uri($@"{MiddleClass.Dir}\StartBg.jpg"));
+            startBg.Source = new BitmapImage(new Uri($@"{middleClass.Dir}\StartBg.jpg"));
 
-            shopBg.Source = new BitmapImage(new Uri($@"{MiddleClass.Dir}\shopBg.jpg"));
+            shopBg.Source = new BitmapImage(new Uri($@"{middleClass.Dir}\shopBg.jpg"));
         }
 
         // Menuer
@@ -47,34 +55,34 @@ namespace KlasserOgObjekter
             StartC.Visibility = Visibility.Hidden;
             Game.Visibility = Visibility.Hidden;
             Shop.Visibility = Visibility.Visible;
-            for(int i = 0; i < WandReposetory.WandList().Count; i++)
+            for(int i = 0; i < middleClass.WandReposetory.wands.Count; i++)
             {
                 Image wandImg = new Image();
-                wandImg.Source = new BitmapImage(new Uri($@"{MiddleClass.Dir}\wands\wand{i}.jpg"));
+                wandImg.Source = new BitmapImage(new Uri($@"{middleClass.Dir}\wands\wand{i}.jpg"));
                 wandImg.Width = 100;
                 Button wandBtn = new Button();
                 wandBtn.Content = wandImg;
                 Canvas.SetLeft(wandBtn, i * 120);
 
-                wandBtn.Name = $"{WandReposetory.WandList()[i].Name}";
+                wandBtn.Name = $"{middleClass.WandReposetory.wands[i].Name}";
                 wandBtn.Click += new RoutedEventHandler(shopElement);
                 wandBtn.Tag = wandImg.Source.ToString();
                 Shop.Children.Add(wandBtn);
             }
-            goldCounter.Text = MiddleClass.returnGold();
+            goldCounter.Text = middleClass.returnGold();
         }
 
         public void shopElement(object sender, RoutedEventArgs e)
         {
             Button srcButton = e.Source as Button;
 
-            foreach (Wand wands in WandReposetory.WandList())
+            foreach (Wand wands in middleClass.WandReposetory.wands)
             {
                 if (srcButton.Name == wands.Name)
                 {
                     
-                    MiddleClass.giveHarryStrenght(wands.WandDamage);
-                    goldCounter.Text = MiddleClass.returnGold();
+                    middleClass.giveHarryStrenght(wands.WandDamage);
+                    goldCounter.Text = middleClass.returnGold();
                 }
             }
         }
@@ -96,7 +104,7 @@ namespace KlasserOgObjekter
             AttackBtn.IsEnabled = false;
             AnapneokBtn.IsEnabled = false;
             HarryImg.Source = HarryAttackImg;
-            PcHealth.Text = MiddleClass.HarryBasicAttack();
+            PcHealth.Text = middleClass.HarryBasicAttack();
             wait();
         }
 
@@ -106,21 +114,21 @@ namespace KlasserOgObjekter
             AttackBtn.IsEnabled = false;
             AnapneokBtn.IsEnabled = false;
             HarryImg.Source = HarryAttackImg;
-            PcHealth.Text = MiddleClass.HarryAnapneoAttack();
+            PcHealth.Text = middleClass.HarryAnapneoAttack();
             wait();
         }
 
         // Her tjekker jeg for mana
         private void checkMana()
         {
-            AnapneokBtn.IsEnabled = MiddleClass.checkManaLow();
+            AnapneokBtn.IsEnabled = middleClass.checkManaLow();
         }
 
         // Sætter pc og player level text til at være hvad deres level er
         public void levelCheck()
         {
-            PcLevel.Text = MiddleClass.vLvlCheck();
-            PlayerLevel.Text = MiddleClass.hLvlCheck();
+            PcLevel.Text = middleClass.vLvlCheck();
+            PlayerLevel.Text = middleClass.hLvlCheck();
         }
 
         // Det her er en wait
@@ -130,7 +138,7 @@ namespace KlasserOgObjekter
             HarryImg.Source = HarryStandImg;
             VoldemortImg.Source = VoldemortAttackImg;
             
-            PlayerHealth.Text = $"Player Health: {MiddleClass.VoldemortAttack()}";
+            PlayerHealth.Text = $"Player Health: {middleClass.VoldemortAttack()}";
             await Task.Delay(1000);
             AttackBtn.IsEnabled = true;
             VoldemortImg.Source = VoldemortStandImg;

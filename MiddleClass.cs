@@ -12,17 +12,26 @@ namespace KlasserOgObjekter
         static Random rnd = new Random();
         
         // Her laver jeg Voldemort fra target klassen
-        static Target Voldemort = new Target("Voldemort", 1, 1, 100, 0);
+        Target Voldemort = new Target("Voldemort", 1, 1, 100, 0);
         // Her laver jeg Harry fra target klassen
-        static Player Harry = new Player("Harry Potter", 1, 1, 100, 0);
+        Player Harry = new Player("Harry Potter", 1, 1, 100, 0);
         // Her får jeg stien til den mappe som programmet ligger i med \Assets
-        public static string Dir = $@"{Environment.CurrentDirectory}\Assets";
+        public string Dir = $@"{Environment.CurrentDirectory}\Assets";
+
+        WandReposetory wandReposetory = new WandReposetory();
+
+        public WandReposetory WandReposetory { get => wandReposetory; set => wandReposetory = value; }
+
+        public MiddleClass()
+        {
+
+        }
 
         // Her laver jeg en HarryBasicAttack som kalde Harry.Attack, giver den skade til Voldemort og tjekker om han er død og hvis han er det skal den kalde Harry.LevelUp
-        public static string HarryBasicAttack()
+        public string HarryBasicAttack()
         {
         
-            int hDamage = Harry.Attack(1);
+            int hDamage = Harry.Attack(1, Dir);
             Voldemort.Health -= hDamage;
             if (Voldemort.Health <= 0)
             {
@@ -35,9 +44,9 @@ namespace KlasserOgObjekter
         }
 
         // Det samme som over den her men der er noget der gør sådan at det skader mere
-        public static string HarryAnapneoAttack()
+        public string HarryAnapneoAttack()
         {
-            int hDamage = Harry.AnapneoAttack(1);
+            int hDamage = Harry.AnapneoAttack(1, Dir);
             Voldemort.Health -= hDamage;
             if (Voldemort.Health <= 0)
             {
@@ -53,9 +62,9 @@ namespace KlasserOgObjekter
             return @"Health: " + Voldemort.Health;
         }
 
-        public static void giveHarryStrenght(int amountOfStrenght)
+        public void giveHarryStrenght(int amountOfStrenght)
         {
-            foreach (Wand wand in WandReposetory.WandList())
+            foreach (Wand wand in WandReposetory.wands)
             {
                 if(wand.WandDamage == amountOfStrenght && Harry.Gold >= wand.Cost)
                 {
@@ -67,13 +76,13 @@ namespace KlasserOgObjekter
             }
         }
 
-        public static string returnGold()
+        public string returnGold()
         {
             return Harry.Gold.ToString();
         }
 
         // Her tjekker den om manaen er mindre eller ligmed 50
-        public static bool checkManaLow()
+        public  bool checkManaLow()
         {
             if(Harry.Mana <= 50)
             {
@@ -85,20 +94,20 @@ namespace KlasserOgObjekter
         }
 
         // Her laver jeg en return med Voldemorts Level sådan at jeg kan få det ind i guien
-        public static string vLvlCheck()
+        public string vLvlCheck()
         {
             return $"{Voldemort.Level}";
         }
         // Her laver jeg en return med Harrys Level sådan at jeg kan få det ind i guien
-        public static string hLvlCheck()
+        public string hLvlCheck()
         {
             return $"{Harry.Level}";
         }
 
         // Her angriber Voldemort
-        public static string VoldemortAttack()
+        public string VoldemortAttack()
         {
-            int vDamage = Voldemort.Attack(0);
+            int vDamage = Voldemort.Attack(0, Dir);
             Harry.Health -= vDamage;
             if(Harry.Health <= 0)
             {
