@@ -1,5 +1,4 @@
-﻿using KlasserOgObjekter.DAL;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -34,6 +33,8 @@ namespace KlasserOgObjekter
         {
             InitializeComponent();
 
+            middleClass.addPlayers();
+
             HarryStandImg = new BitmapImage(new Uri(@$"{middleClass.Dir}\HarryImg.png"));
             HarryAttackImg = new BitmapImage(new Uri(@$"{middleClass.Dir}\HarryAttackImg.png"));
             VoldemortStandImg = new BitmapImage(new Uri(@$"{middleClass.Dir}\VoldemortImg.png"));
@@ -47,15 +48,17 @@ namespace KlasserOgObjekter
             startBg.Source = new BitmapImage(new Uri($@"{middleClass.Dir}\StartBg.jpg"));
 
             shopBg.Source = new BitmapImage(new Uri($@"{middleClass.Dir}\shopBg.jpg"));
+            
         }
 
         // Menuer
         private void shopBtn_Clicked(object sender, RoutedEventArgs e)
         {
+            middleClass.addWands();
             StartC.Visibility = Visibility.Hidden;
             Game.Visibility = Visibility.Hidden;
             Shop.Visibility = Visibility.Visible;
-            for(int i = 0; i < middleClass.WandReposetory.wands.Count; i++)
+            for(int i = 0; i < middleClass.Wands.Count; i++)
             {
                 Image wandImg = new Image();
                 wandImg.Source = new BitmapImage(new Uri($@"{middleClass.Dir}\wands\wand{i}.jpg"));
@@ -64,7 +67,7 @@ namespace KlasserOgObjekter
                 wandBtn.Content = wandImg;
                 Canvas.SetLeft(wandBtn, i * 120);
 
-                wandBtn.Name = $"{middleClass.WandReposetory.wands[i].Name}";
+                wandBtn.Name = $"{middleClass.Wands[i].Name}";
                 wandBtn.Click += new RoutedEventHandler(shopElement);
                 wandBtn.Tag = wandImg.Source.ToString();
                 Shop.Children.Add(wandBtn);
@@ -76,7 +79,7 @@ namespace KlasserOgObjekter
         {
             Button srcButton = e.Source as Button;
 
-            foreach (Wand wands in middleClass.WandReposetory.wands)
+            foreach (Wand wands in middleClass.Wands)
             {
                 if (srcButton.Name == wands.Name)
                 {

@@ -1,5 +1,4 @@
-﻿using KlasserOgObjekter.DAL;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -18,15 +17,19 @@ namespace KlasserOgObjekter
         // Her får jeg stien til den mappe som programmet ligger i med \Assets
         public string Dir = $@"{Environment.CurrentDirectory}\Assets";
 
-        WandReposetory wandReposetory = new WandReposetory();
+        List<Wand> wands = new List<Wand>();
 
-        public WandReposetory WandReposetory { get => wandReposetory; set => wandReposetory = value; }
+        db db = new db();
+        public List<Wand> Wands { get => wands; set => wands = value; }
 
         public MiddleClass()
         {
-
+            
         }
-
+        public void addWands()
+        {
+            wands = db.GetWands();
+        }
         // Her laver jeg en HarryBasicAttack som kalde Harry.Attack, giver den skade til Voldemort og tjekker om han er død og hvis han er det skal den kalde Harry.LevelUp
         public string HarryBasicAttack()
         {
@@ -64,7 +67,7 @@ namespace KlasserOgObjekter
 
         public void giveHarryStrenght(int amountOfStrenght)
         {
-            foreach (Wand wand in WandReposetory.wands)
+            foreach (Wand wand in wands)
             {
                 if(wand.WandDamage == amountOfStrenght && Harry.Gold >= wand.Cost)
                 {
