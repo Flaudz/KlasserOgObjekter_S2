@@ -21,7 +21,7 @@ namespace KlasserOgObjekter
         Random rnd = new Random();
 
         // Cunstructor
-        public Player(/*string name, int level, int xp, int mana, int gold*/)
+        public Player(string name, int level, int xp, int mana, int gold)
         {
             Id = id;
             Name = name;

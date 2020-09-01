@@ -33,7 +33,6 @@ namespace KlasserOgObjekter
         {
             InitializeComponent();
 
-            middleClass.addPlayers();
 
             HarryStandImg = new BitmapImage(new Uri(@$"{middleClass.Dir}\HarryImg.png"));
             HarryAttackImg = new BitmapImage(new Uri(@$"{middleClass.Dir}\HarryAttackImg.png"));
