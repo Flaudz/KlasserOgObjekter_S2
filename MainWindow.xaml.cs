@@ -149,7 +149,7 @@ namespace KlasserOgObjekter
             HarryImg.Source = HarryStandImg;
             VoldemortImg.Source = VoldemortAttackImg;
             
-            PlayerHealth.Text = $"Player Health: {middleClass.VoldemortAttack()}";
+            PlayerHealth.Text = $"Player Health: {middleClass.targetAttack()}";
             await Task.Delay(1000);
             AttackBtn.IsEnabled = true;
             VoldemortImg.Source = VoldemortStandImg;

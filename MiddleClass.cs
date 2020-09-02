@@ -10,10 +10,11 @@ namespace KlasserOgObjekter
     {
         static Random rnd = new Random();
         
-        // Her laver jeg Voldemort fra target klassen
+        // Her laver jeg target fra target klassen
         // Her laver jeg Harry fra target klassen
         Player harry = new Player();
-        Target Voldemort = new Target("Voldemort", 1, 1, 100, 0);
+        Target target = new Target();
+        List<Target> targets = new List<Target>();
         // Her får jeg stien til den mappe som programmet ligger i med \Assets
         public string Dir = $@"{Environment.CurrentDirectory}\Assets";
         
@@ -23,53 +24,72 @@ namespace KlasserOgObjekter
         db db = new db();
         public List<Wand> Wands { get => wands; set => wands = value; }
         public Player Harry { get => harry; set => harry = value; }
-        
+
         public MiddleClass()
         {
             
         }
         public void addPlayers()
         {
+            targets = db.GetTargets();
             harry = db.GetPlayers();
+        }
+
+        public void changeTarget()
+        {
+
+            if(Harry.Level < 8)
+            {
+                target = targets[0];
+            }
+            else if(Harry.Level >= 8 && Harry.Level < 21)
+            {
+                target = targets[1];
+            }
+            else if(Harry.Level >= 21)
+            {
+                target = targets[2];
+            }
         }
 
         public void addWands()
         {
             wands = db.GetWands();
         }
-        // Her laver jeg en HarryBasicAttack som kalde Harry.Attack, giver den skade til Voldemort og tjekker om han er død og hvis han er det skal den kalde Harry.LevelUp
+        // Her laver jeg en HarryBasicAttack som kalde Harry.Attack, giver den skade til target og tjekker om han er død og hvis han er det skal den kalde Harry.LevelUp
         public string HarryBasicAttack()
         {
         
             int hDamage = Harry.Attack(1, Dir);
-            Voldemort.Health -= hDamage;
-            if (Voldemort.Health <= 0)
+            target.Health -= hDamage;
+            if (target.Health <= 0)
             {
-                Voldemort.Health = 100 + rnd.Next(Voldemort.Level, Voldemort.Level + 27);
+                target.Health = 100 + rnd.Next(target.Level, target.Level + 27);
 
-                Harry.Gold += 5 * Voldemort.Level;
+                Harry.Gold += 5 * target.Level;
                 Harry.LevelUp();
+                changeTarget();
             }
-            return @"Health: "+Voldemort.Health;
+            return @"Health: "+target.Health;
         }
 
         // Det samme som over den her men der er noget der gør sådan at det skader mere
         public string HarryAnapneoAttack()
         {
             int hDamage = Harry.AnapneoAttack(1, Dir);
-            Voldemort.Health -= hDamage;
-            if (Voldemort.Health <= 0)
+            target.Health -= hDamage;
+            if (target.Health <= 0)
             {
 
-                Voldemort.Health = 100 + rnd.Next(Voldemort.Level + 15, Voldemort.Level + 27);
+                target.Health = 100 + rnd.Next(target.Level + 15, target.Level + 27);
                 MediaPlayer player = new MediaPlayer();
                 player.Open(new Uri($@"{Dir}\deadSouind.mp3"));
                 player.Play();
-                Harry.Gold += 5 * Voldemort.Level;
-                
+                Harry.Gold += 5 * target.Level;
                 Harry.LevelUp();
+                changeTarget();
             }
-            return @"Health: " + Voldemort.Health;
+            return @"Health: " + target.Health;
         }
 
         public void giveHarryStrenght(int amountOfStrenght)
@@ -103,10 +123,10 @@ namespace KlasserOgObjekter
             }
         }
 
-        // Her laver jeg en return med Voldemorts Level sådan at jeg kan få det ind i guien
+        // Her laver jeg en return med targets Level sådan at jeg kan få det ind i guien
         public string vLvlCheck()
         {
-            return $"{Voldemort.Level}";
+            return $"{target.Level}";
         }
         // Her laver jeg en return med Harrys Level sådan at jeg kan få det ind i guien
         public string hLvlCheck()
@@ -114,10 +134,10 @@ namespace KlasserOgObjekter
             return $"{Harry.Level}";
         }
 
-        // Her angriber Voldemort
-        public string VoldemortAttack()
+        // Her angriber target
+        public string targetAttack()
         {
-            int vDamage = Voldemort.Attack(0, Dir);
+            int vDamage = target.Attack(0, Dir);
             Harry.Health -= vDamage;
             if(Harry.Health <= 0)
             {
@@ -126,7 +146,7 @@ namespace KlasserOgObjekter
                 player.Play();
                 Harry.Health = 100 + rnd.Next(Harry.Level+15, Harry.Level + 27);
                 Harry.Mana = 100 + (Harry.Level + 26);
-                Voldemort.LevelUp();
+                target.LevelUp();
             }
             
             return "" + Harry.Health;

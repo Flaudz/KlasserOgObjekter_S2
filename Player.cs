@@ -37,6 +37,10 @@ namespace KlasserOgObjekter
         {
         }
 
+        public Player(string name, int level, int strength, int health)
+        {
+        }
+
         // Properties
         public string Name { get => name; set => name = value; }
         public int Health { get => health; set => health = value; }
@@ -82,6 +86,7 @@ namespace KlasserOgObjekter
             {
                 
                 Level++;
+                
                 MessageBox.Show($"{name} {Level}");
             }
             return Level.ToString();

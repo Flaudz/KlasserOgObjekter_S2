@@ -58,6 +58,7 @@ namespace KlasserOgObjekter
             Execute(addNewWandQuery);
         }
 
+        // Players
         public Player GetPlayers()
         {
             Player player = new Player();
@@ -98,6 +99,39 @@ namespace KlasserOgObjekter
             string SavePlayerQuery =
                 $"UPDATE Players SET id = {1}, health = {100}, strength = {strength}, level = {level}, xp = {xp}, mana = {100}, gold = {gold}";
             Execute(SavePlayerQuery);
+        }
+
+
+        // Villains
+        public List<Target> GetTargets()
+        {
+            List<Target> targetList = new List<Target>();
+            string allTargetsQuery = "SELECT * FROM Targets";
+
+            // Perform query  and save result in variable:
+            DataSet resultSet = Execute(allTargetsQuery);
+
+            // Get the first table of the data set, and save in variable
+            DataTable targetsTable = resultSet.Tables[0];
+
+
+            // Iterate through the rows of the table, and extract the data,
+            // and create a new Person object each time.
+            foreach (DataRow targetRow in targetsTable.Rows)
+            {
+                int id = (int)targetRow["id"];
+                string name = (string)targetRow["name"];
+                int health = (int)targetRow["health"];
+                int strength = (int)targetRow["strenght"];
+                int level = (int)targetRow["level"];
+                Target target = new Target();
+                target.Name = name;
+                target.Health = health;
+                target.Strength = strength;
+                target.Level = level;
+                targetList.Add(target);
+            }
+            return targetList;
         }
     }
 }

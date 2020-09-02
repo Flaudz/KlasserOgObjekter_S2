@@ -11,6 +11,13 @@ namespace KlasserOgObjekter
         {
         }
 
+        public Target(string name, int level, int strength, int health) : base(name, level, strength, health)
+        {
+        }
+        public Target() : base()
+        {
+        }
+
         public override string LevelUp()
         {
             Xp *= 15;
