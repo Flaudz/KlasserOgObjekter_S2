@@ -58,43 +58,46 @@ namespace KlasserOgObjekter
             Execute(addNewWandQuery);
         }
 
-        //public List<Player> GetPlayers()
-        //{
-        //    List<Player> allPlayers = new List<Player>(0);
-        //    string allPlayersQuery = "SELECT * FROM Players";
+        public Player GetPlayers()
+        {
+            Player player = new Player();
+            string allPlayersQuery = "SELECT * FROM Players";
 
-        //    // Perform query  and save result in variable:
-        //    DataSet resultSet = Execute(allPlayersQuery);
+            // Perform query  and save result in variable:
+            DataSet resultSet = Execute(allPlayersQuery);
 
-        //    // Get the first table of the data set, and save in variable
-        //    DataTable playersTable = resultSet.Tables[0];
+            // Get the first table of the data set, and save in variable
+            DataTable playersTable = resultSet.Tables[0];
 
 
-        //    // Iterate through the rows of the table, and extract the data,
-        //    // and create a new wand object each tim, and add that to the list of wands.
-        //    foreach (DataRow playerRow in playersTable.Rows)
-        //    {
-        //        int id = (int)playerRow["id"];
-        //        string name = (string)playerRow["name"];
-        //        int health = (int)playerRow["health"];
-        //        int strength = (int)playerRow["strength"];
-        //        int level = (int)playerRow["level"];
-        //        int xp = (int)playerRow["xp"];
-        //        int mana = (int)playerRow["mana"];
-        //        int gold = (int)playerRow["gold"];
+            // Iterate through the rows of the table, and extract the data,
+            // and create a new Person object each time.
+            foreach (DataRow playerRow in playersTable.Rows)
+            {
+                int id = (int)playerRow["id"];
+                string name = (string)playerRow["name"];
+                int health = (int)playerRow["health"];
+                int strength = (int)playerRow["strength"];
+                int level = (int)playerRow["level"];
+                int xp = (int)playerRow["xp"];
+                int mana = (int)playerRow["mana"];
+                int gold = (int)playerRow["gold"];
 
-        //        Player player = new Player();
-        //        player.Id = id;
-        //        player.Name = name;
-        //        player.Health = health;
-        //        player.Strength = strength;
-        //        player.Level = level;
-        //        player.Xp = xp;
-        //        player.Mana = mana;
-        //        player.Gold = gold;
-        //        allPlayers.Add(player);
-        //    }
-        //    return allPlayers;
-        //}
+                player.Name = name;
+                player.Health = health;
+                player.Strength = strength;
+                player.Level = level;
+                player.Xp = xp;
+                player.Mana = mana;
+                player.Gold = gold;
+            }
+            return player;
+        }
+        public void SavePlayer(int strength, int level, int xp, int mana, int gold)
+        {
+            string SavePlayerQuery =
+                $"UPDATE Players SET id = {1}, health = {100}, strength = {strength}, level = {level}, xp = {xp}, mana = {100}, gold = {gold}";
+            Execute(SavePlayerQuery);
+        }
     }
 }

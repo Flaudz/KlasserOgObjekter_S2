@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection.Metadata;
@@ -20,6 +21,7 @@ namespace KlasserOgObjekter
     public partial class MainWindow : Window
     {
         MiddleClass middleClass = new MiddleClass();
+        db db = new db();
         // Her laver jeg 4 bitmapimages som holder på hver sin sti til et billede.
 
         BitmapImage HarryStandImg = new BitmapImage();
@@ -33,6 +35,7 @@ namespace KlasserOgObjekter
         {
             InitializeComponent();
 
+            middleClass.addPlayers();
 
             HarryStandImg = new BitmapImage(new Uri(@$"{middleClass.Dir}\HarryImg.png"));
             HarryAttackImg = new BitmapImage(new Uri(@$"{middleClass.Dir}\HarryAttackImg.png"));
@@ -48,6 +51,12 @@ namespace KlasserOgObjekter
 
             shopBg.Source = new BitmapImage(new Uri($@"{middleClass.Dir}\shopBg.jpg"));
             
+        }
+
+        // Run when window is closing
+        private void Window_Closing(object sender, CancelEventArgs e)
+        {
+            db.SavePlayer(middleClass.Harry.Strength, middleClass.Harry.Level, (int)middleClass.Harry.Xp, middleClass.Harry.Mana, middleClass.Harry.Gold);
         }
 
         // Menuer

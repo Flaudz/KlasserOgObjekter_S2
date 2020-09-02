@@ -33,6 +33,10 @@ namespace KlasserOgObjekter
             Gold = gold;
         }
 
+        public Player()
+        {
+        }
+
         // Properties
         public string Name { get => name; set => name = value; }
         public int Health { get => health; set => health = value; }

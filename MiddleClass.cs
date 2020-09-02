@@ -11,21 +11,28 @@ namespace KlasserOgObjekter
         static Random rnd = new Random();
         
         // Her laver jeg Voldemort fra target klassen
-        Target Voldemort = new Target("Voldemort", 1, 1, 100, 0);
         // Her laver jeg Harry fra target klassen
-        Player Harry = new Player("Harry Potter", 1, 1, 100, 0);
+        Player harry = new Player();
+        Target Voldemort = new Target("Voldemort", 1, 1, 100, 0);
         // Her får jeg stien til den mappe som programmet ligger i med \Assets
         public string Dir = $@"{Environment.CurrentDirectory}\Assets";
+        
 
         List<Wand> wands = new List<Wand>();
 
         db db = new db();
         public List<Wand> Wands { get => wands; set => wands = value; }
-
+        public Player Harry { get => harry; set => harry = value; }
+        
         public MiddleClass()
         {
             
         }
+        public void addPlayers()
+        {
+            harry = db.GetPlayers();
+        }
+
         public void addWands()
         {
             wands = db.GetWands();
@@ -56,7 +63,7 @@ namespace KlasserOgObjekter
 
                 Voldemort.Health = 100 + rnd.Next(Voldemort.Level + 15, Voldemort.Level + 27);
                 MediaPlayer player = new MediaPlayer();
-                player.Open(new Uri($@"{Dir}\deadSound.mp3"));
+                player.Open(new Uri($@"{Dir}\deadSouind.mp3"));
                 player.Play();
                 Harry.Gold += 5 * Voldemort.Level;
                 
