@@ -51,6 +51,8 @@ namespace KlasserOgObjekter
             }
             return allWands;
         }
+
+        
         public void AddNewWand(Wand wand)
         {
             string addNewWandQuery =

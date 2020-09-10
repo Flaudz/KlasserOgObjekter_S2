@@ -39,6 +39,10 @@ namespace KlasserOgObjekter
 
         public Player(string name, int level, int strength, int health)
         {
+            Name = name;
+            Level = level;
+            Strength = strength;
+            Health = health;
         }
 
         // Properties

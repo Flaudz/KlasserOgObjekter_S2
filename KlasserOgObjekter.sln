@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30330.147
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KlasserOgObjekter", "KlasserOgObjekter.csproj", "{4A9E3210-B59A-4618-AC16-E363A27B54CE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KlasserOgObjekter", "KlasserOgObjekter.csproj", "{4A9E3210-B59A-4618-AC16-E363A27B54CE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameTests", "..\GameTests\GameTests.csproj", "{49367D67-9785-4A4F-AE6B-E1A27805E3A2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{4A9E3210-B59A-4618-AC16-E363A27B54CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4A9E3210-B59A-4618-AC16-E363A27B54CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4A9E3210-B59A-4618-AC16-E363A27B54CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49367D67-9785-4A4F-AE6B-E1A27805E3A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49367D67-9785-4A4F-AE6B-E1A27805E3A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49367D67-9785-4A4F-AE6B-E1A27805E3A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49367D67-9785-4A4F-AE6B-E1A27805E3A2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
